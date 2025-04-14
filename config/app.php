@@ -130,6 +130,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        \Torann\GeoIP\GeoIPServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
         App\Providers\AppServiceProvider::class,
@@ -177,6 +178,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
     ],
 
     /*

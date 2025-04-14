@@ -1,0 +1,274 @@
+@extends('layouts.commercials')'
+
+@section('content')
+
+    @include('managers.includes.card', ['title' => 'Notas'])
+
+    <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row">
+        <li class="nav-item">
+            <a href="javascript:void(0)" id="notes-all" class=" nav-link note-link  d-flex align-items-center justify-content-center  px-3 px-md-3  me-0 me-md-2 text-body-color active">
+                <span class="d-md-block font-weight-medium">TODOS</span>
+            </a>
+        </li>
+        @foreach($statuses as $status)
+            <li class="nav-item">
+                <a href="javascript:void(0)" id="notes-{{$status->slug}}"
+                   class=" nav-link note-link  d-flex align-items-center justify-content-center  px-3 px-md-3  me-0 me-md-2 text-body-color"></i>
+                    <span class="d-md-block font-weight-medium uppercase">{{$status->title}}</span>
+                </a>
+            </li>
+        @endforeach
+    </ul>
+
+    <div class="tab-content">
+        <div id="note-full-container" class="note-has-grid row">
+
+            @foreach($notes as $note)
+
+
+                <div class="col-xl-6 col-md-6 col-sm-12 single-note-item notes-all notes-{{$note->status->slug}}">
+
+                    <div class="card p-4">
+                        <div class="card-body p-0">
+
+                            <span class="bg-light-note text-primary badge mb-3 fw-semibold">{{$note->status->title}}</span>
+                            <div class="d-flex align-items-center mb-3">
+                                <h4 class="fw-semibold mb-0 text-black">
+                                    <a class="text-black">
+                                        {{ $note->title }}
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div class="p-4 container-customer">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="mb-0 fs-5 fw-semibold">{{ $note->customer->full_name }}</h6>
+                                        <span>lian@email</span>
+                                    </div>
+                                    <img src="../assets/images/profile/user-3.jpg" alt="user1" width="35" class="rounded-circle">
+                                </div>
+                                <div class="d-flex align-items-start justify-content-between mt-3">
+                                    <span>Price</span>
+                                    <div class="text-end">
+                                        <h5 class="mb-0 fs-5 fw-semibold">
+                                            {{ $note->number }}
+                                        </h5>
+                                        <span class="fs-3">NOTA</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start justify-content-between mt-3">
+                            <span>
+                              <i class="ti ti-clock-hour-4 me-1 fs-4"></i>3d 1h
+                            </span>
+                                    <span>
+                              <i class="ti ti-eye fs-4 me-1"></i>1.2k
+                            </span>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-light-primary text-primary w-100 mt-3"  href="{{ route('commercial.notes.arrange', $note->uid) }}" > Detalle </a>
+                            <a class="btn btn-light-primary text-primary w-100 mt-3"  href="{{ route('commercial.statements.status', $note->uid) }}" > Gestionar </a>
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+@endsection
+
+
+
+
+
+@push('scripts')
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+
+            $(function () {
+                function removeNote() {
+                    $(".remove-note")
+                        .off("click")
+                        .on("click", function (event) {
+                            event.stopPropagation();
+                            $(this).parents(".single-note-item").remove();
+                        });
+                }
+
+                function favouriteNote() {
+                    $(".favourite-note")
+                        .off("click")
+                        .on("click", function (event) {
+                            event.stopPropagation();
+                            $(this).parents(".single-note-item").toggleClass("note-favourite");
+                        });
+                }
+
+                function addLabelGroups() {
+                    $(".category-selector .badge-group-item")
+                        .off("click")
+                        .on("click", function (event) {
+                            event.preventDefault();
+                            /* Act on the event */
+                            var getclass = this.className;
+                            var getSplitclass = getclass.split(" ")[0];
+                            if ($(this).hasClass("badge-business")) {
+                                $(this).parents(".single-note-item").removeClass("note-social");
+                                $(this).parents(".single-note-item").removeClass("note-important");
+                                $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                            } else if ($(this).hasClass("badge-social")) {
+                                $(this).parents(".single-note-item").removeClass("note-business");
+                                $(this).parents(".single-note-item").removeClass("note-important");
+                                $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                            } else if ($(this).hasClass("badge-important")) {
+                                $(this).parents(".single-note-item").removeClass("note-social");
+                                $(this).parents(".single-note-item").removeClass("note-business");
+                                $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                            }
+                        });
+                }
+
+                var $btns = $(".note-link").click(function () {
+                    if (this.id == "all-category") {
+                        var $el = $("." + this.id).fadeIn();
+                        $("#note-full-container > div").not($el).hide();
+                    }
+                    if (this.id == "important") {
+                        var $el = $("." + this.id).fadeIn();
+                        $("#note-full-container > div").not($el).hide();
+                    } else {
+                        var $el = $("." + this.id).fadeIn();
+                        $("#note-full-container > div").not($el).hide();
+                    }
+                    $btns.removeClass("active");
+                    $(this).addClass("active");
+                });
+
+                $("#add-notes").on("click", function (event) {
+                    $("#addnotesmodal").modal("show");
+                    $("#btn-n-save").hide();
+                    $("#btn-n-add").show();
+                });
+
+                // Button add
+                $("#btn-n-add").on("click", function (event) {
+                    event.preventDefault();
+                    /* Act on the event */
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, "0");
+                    var mm = String(today.getMonth()); //January is 0!
+                    var yyyy = today.getFullYear();
+                    var monthNames = [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                    ];
+                    today = dd + " " + monthNames[mm] + " " + yyyy;
+
+                    var $_noteTitle = document.getElementById("note-has-title").value;
+                    var $_noteDescription = document.getElementById(
+                        "note-has-description"
+                    ).value;
+
+                    $html =
+                        '<div class="col-md-4 single-note-item all-category"><div class="card card-body">' +
+                        '<span class="side-stick"></span>' +
+                        '<h6 class="note-title text-truncate w-75 mb-0" data-noteHeading="' +
+                        $_noteTitle +
+                        '">' +
+                        $_noteTitle +
+                        '</h6>' +
+                        '<p class="note-date fs-2">' +
+                        today +
+                        "</p>" +
+                        '<div class="note-content">' +
+                        '<p class="note-inner-content" data-noteContent="' +
+                        $_noteDescription +
+                        '">' +
+                        $_noteDescription +
+                        "</p>" +
+                        "</div>" +
+                        '<div class="d-flex align-items-center">' +
+                        '<a href="javascript:void(0)" class="link me-1"><i class="ti ti-star fs-4 favourite-note"></i></a>' +
+                        '<a href="javascript:void(0)" class="link text-danger ms-2"><i class="ti ti-trash fs-4 remove-note"></i></a>' +
+                        '<div class="ms-auto">' +
+                        '<div class="category-selector btn-group">' +
+                        '<a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">' +
+                        '<div class="category">' +
+                        '<div class="category-business"></div>' +
+                        '<div class="category-social"></div>' +
+                        '<div class="category-important"></div>' +
+                        '<span class="more-options text-dark"><i class="ti ti-dots-vertical fs-5"></i></span>' +
+                        "</div>" +
+                        "</a>" +
+                        '<div class="dropdown-menu dropdown-menu-right category-menu">' +
+                        '<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business" href="javascript:void(0);">Business</a>' +
+                        '<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social" href="javascript:void(0);"> Social</a>' +
+                        '<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important" href="javascript:void(0);"> Important</a>' +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div></div> ";
+
+                    $("#note-full-container").prepend($html);
+                    $("#addnotesmodal").modal("hide");
+
+                    removeNote();
+                    favouriteNote();
+                    addLabelGroups();
+                    feather.replace();
+                });
+
+                $("#addnotesmodal").on("hidden.bs.modal", function (event) {
+                    event.preventDefault();
+                    document.getElementById("note-has-title").value = "";
+                    document.getElementById("note-has-description").value = "";
+                });
+
+                removeNote();
+                favouriteNote();
+                addLabelGroups();
+
+                $("#btn-n-add").attr("disabled", "disabled");
+            });
+
+            $("#note-has-title").keyup(function () {
+                var empty = false;
+                $("#note-has-title").each(function () {
+                    if ($(this).val() == "") {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    $("#btn-n-add").attr("disabled", "disabled");
+                } else {
+                    $("#btn-n-add").removeAttr("disabled");
+                }
+            });
+
+
+        });
+
+    </script>
+
+@endpush
+
+
+
+

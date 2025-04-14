@@ -16,6 +16,7 @@ class NoteStatuses extends Model
         'uid',
         'title',
         'slug',
+        'available',
         'created_at',
         'updated_at'
     ];
@@ -33,6 +34,10 @@ class NoteStatuses extends Model
     public function scopeSlug($query ,$slug)
     {
         return $query->where('slug', $slug)->first();
+    }
+    public function scopeAvailable($query)
+    {
+        return $query->where('available', 1);
     }
 
     public function notes() : HasMany

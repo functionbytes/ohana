@@ -13,20 +13,11 @@ class SettingsController extends Controller
 
         $user = User::auth();
 
-        return view('callcenters.views.settings.profile.setting')->with([
+        return view('teleoperators.views.settings.profile.setting')->with([
             'user' => $user
         ]);
     }
-    public function notifications(){
-
-        $user = User::auth();
-
-        return view('callcenters.views.settings.setting.setting')->with([
-            'user' => $user,
-        ]);
-
-    }
-    public function updateProfile(Request $request) {
+    public function update(Request $request) {
 
         $user = User::uid($request->uid);
 
@@ -55,7 +46,6 @@ class SettingsController extends Controller
                 $user = User::uid($request->uid);
                 $user->firstname = Str::upper($request->firstname);
                 $user->lastname = Str::upper($request->lastname);
-                $user->support = Str::upper($request->support);
                 $user->email = $request->email;
                 $request->password != null ? $user->password = $request->password : null;
                 $user->update();
@@ -83,29 +73,6 @@ class SettingsController extends Controller
             ]);
         }
 
-
-    }
-    public function updateNotifications(Request $request){
-
-                $user = User::uid($request->uid);
-                $user->mail_notification = $request->mail_notification == 'true' ? 1 : 0;
-                $user->inscription_notification = $request->inscription_notification == 'true' ? 1 : 0;
-                $user->invoice_notification = $request->invoice_notification == 'true' ? 1 : 0;
-
-                if ($user->isDirty()) {
-
-                    $user->update();
-
-                    activity()
-                        ->performedOn($user)
-                        ->withProperties($user->getChanges())
-                        ->log('updated');
-                }
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Se ha actualizado correctamente.'
-                ]);
 
     }
 

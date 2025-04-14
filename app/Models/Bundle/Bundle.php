@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\MediaLibrary\HasMedia;
 
-class Bundle extends Model implements HasMedia
+class Bundle extends Model
 {
     use HasFactory, InteractsWithMedia , LogsActivity;
 
@@ -75,6 +75,11 @@ class Bundle extends Model implements HasMedia
     public function item(): MorphMany
     {
         return $this->morphMany('App\Models\Order\OrderItem','item');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Models\Bundle\BundleCategory');
     }
 
 }

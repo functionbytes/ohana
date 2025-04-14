@@ -4,22 +4,22 @@
 
 <head>
 
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <meta charset="utf-8"/>
     <title>INOQUALAB - E-Learning</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"/>
     <link rel="apple-touch-icon" href="pages/ico/60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta content="Meet pages - The simplest and fastest way to build web UI for your dashboard or app." name="description" />
-    <meta content="Ace" name="author" />
-
-
+    <meta content="Meet pages - The simplest and fastest way to build web UI for your dashboard or app."
+          name="description"/>
+    <meta content="Ace" name="author"/>
 
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -43,19 +43,19 @@
 <div class="page-wrapper" id="main-wrapper" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed"
      data-header-position="fixed" data-layout="horizontal">
 
-    @include ('callcenters.includes.nav')
+    @include ('teleoperators.includes.nav')
 
     <!-- Main wrapper -->
 
     <div class="body-wrapper">
 
-        @include ('callcenters.includes.header')
+        @include ('teleoperators.includes.header')
 
         <div class="container-fluid">
             @yield('content')
         </div>
 
-        @include ('callcenters.includes.delete')
+        @include ('teleoperators.includes.delete')
 
     </div>
 
@@ -68,7 +68,8 @@
 <!-- core files -->
 
 
-<script src="{{ url('managers/libs/bootstrap-material-datetimepicker/node_modules/moment/moment.js') }}" type="text/javascript"></script>
+<script src="{{ url('managers/libs/bootstrap-material-datetimepicker/node_modules/moment/moment.js') }}"
+        type="text/javascript"></script>
 <script src="{{ url('managers/libs/select2/dist/js/select2.min.js') }}" type="text/javascript"></script>
 <script src="{{ url('managers/libs/jquery-validation/dist/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ url('managers/libs/dropzone/dist/dropzone.js') }}" type="text/javascript"></script>
