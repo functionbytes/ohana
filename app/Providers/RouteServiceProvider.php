@@ -24,10 +24,14 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(function () {
                     Route::group([], base_path('routes/web.php'));
-                    Route::group([], base_path('routes/managers.php'));
-                    Route::group([], base_path('routes/teleoperators.php'));
+                    Route::group([], base_path('routes/administratives.php'));
                     Route::group([], base_path('routes/chiefteleoperators.php'));
                     Route::group([], base_path('routes/commercials.php'));
+                    Route::group([], base_path('routes/dealers.php'));
+                    Route::group([], base_path('routes/managers.php'));
+                    Route::group([], base_path('routes/salesmanagers.php'));
+                    Route::group([], base_path('routes/teamleaders.php'));
+                    Route::group([], base_path('routes/teleoperators.php'));
             });
 
         });
