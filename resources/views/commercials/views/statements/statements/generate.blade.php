@@ -137,7 +137,6 @@
                                     En esta sección encontrarás toda la información relacionada con la actividad comercial, incluyendo el estado de contacto con el cliente, reprogramaciones de llamadas, seguimiento y otras acciones realizadas por el equipo comercial.
                                 </p>
                             </div>
-
                             <div class="col-sm-12 col-md-6 mb-3">
                                 <label for="status" class="control-label col-form-label">Oferta</label>
                                 <select class="form-control select2" id="bundle" name="bundle">
@@ -147,7 +146,6 @@
                                 </select>
                                 <label id="bundle-error" class="error" for="bundle" style="display: none"></label>
                             </div>
-
                             <div class="col-sm-12 col-md-6 mb-3">
                                 <label for="status" class="control-label col-form-label">Número de cuotas</label>
                                 <select class="form-control select2" id="installment" name="installment">
@@ -158,10 +156,19 @@
                                 </select>
                                 <label id="employment-error" class="error" for="employment" style="display: none"></label>
                             </div>
-
                             <div class="col-12 mb-3">
                                 <label  class="control-label col-form-label">Observaciones adicionales para esta venta</label>
                                 <textarea type="text" class="form-control"  name="notes"  autocomplete="new-password"></textarea>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-7">Media</h4>
+                                    <form action="#" class="dropzone dz-clickable mb-2">
+                                        <div class="dz-default dz-message">
+                                            <button class="dz-button" type="button">Drop files here to upload</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
 
                             <div class="list-bundles-container"></div>
@@ -434,7 +441,7 @@
                 function (value, element) {
                     return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
                 },
-                'Por favor, ingrese un número de teléfono móvil válido de España'
+                'Por favor, ingrese un número de teléfono'
             );
 
             jQuery.validator.addMethod(
@@ -561,11 +568,11 @@
                     },
                     cellphone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     phone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     address: {
                         required: "El parametro es necesario.",

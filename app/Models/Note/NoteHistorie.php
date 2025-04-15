@@ -50,6 +50,11 @@ class NoteHistorie extends Model
         return $this->next_call_at  ? Carbon::parse($this->next_call_at)->format('Y-m-d')  : null;
     }
 
+    public function getCreatedAtFormattedAttribute()
+    {
+        return $this->call_at ? Carbon::parse($this->created_at)->format('Y-m-d') : null;
+    }
+
     public function scopeLastByNote($query, $noteId)
     {
         return $query->where('note_id', $noteId)->latest()->limit(1);

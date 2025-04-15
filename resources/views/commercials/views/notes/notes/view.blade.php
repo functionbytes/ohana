@@ -1,4 +1,4 @@
-@extends('layouts.commercials')'
+@extends('layouts.commercials')
 
 @section('content')
 
@@ -98,135 +98,57 @@
                     </div>
                 </div>
 
-
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-7">
-                            Historial nota
-                        </h4>
-                        <div cass="table-responsive mb-4 rounded-1">
-                            <table class="table mb-0 align-middle">
-                                <thead class="text-dark fs-4">
-                                <tr>
-                                    <th>
-                                        <h6 class="fs-3 fw-semibold mb-0">Customer</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-3 fw-semibold mb-0">Nota</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-3 fw-semibold mb-0 text-end">Date</h6>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                    <div class="card-body component--annotations">
+                        <h4 class="card-title fw-semibold">Historial de nota</h4>
+                        <p class="card-subtitle">Registro de los movimientos que realizados por el teleoperador</p>
 
-                                    @foreach($histories as $historie)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="../assets/images/profile/user-3.jpg" class="rounded-circle" width="30" height="30">
-                                                    <div class="ms-3">
-                                                        <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Hanry Lord</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-
-                                                <span class="mb-0 fw-normal fs-3 mt-2">{{ $historie->note }}</span>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 fw-normal fs-3 text-end text-nowrap">{{ date('Y-m-d', strtotime($historie->note)) }}</p>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="list-annotations">
+                            @foreach($histories as $historie)
+                                <div class="item-annotations">
+                                    <div class="d-flex justify-content-between align-items-center mb-6">
+                                        <div class="body-annotations">
+                                            <p class="mb-1 d-block fw-normal">{{ $historie->employee->full_name }}</p>
+                                            <h6 class="mb-1 fw-semibold"> ({{ $historie->created_at_formatted }})</h6>
+                                            <p class="fs-3 mb-0 mt-1">{{ strtoupper($historie->notes) }}</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-primary-subtle">{{ strtoupper($historie->status->title) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
 
-                    <div class="card ">
-                        <div class="card-body">
-                            <h4 class="card-title fw-semibold">Tasks</h4>
-                            <p class="card-subtitle">The Power of Prioritizing Your Tasks</p>
-                            <div class="mt-4 pb-3 border-bottom">
-                                <div class="d-flex align-items-center">
-                                    <span class="bg-primary-subtle text-primary badge">Inprogress</span>
-                                    <span class="fs-3 ms-auto">8 March 2020</span>
-                                </div>
-                                <h6 class="mt-3">NFT Landing Page</h6>
-                                <span class="fs-3 lh-sm">Designing an NFT-themed website with a creative concept so th...</span>
-                                <div class="hstack gap-3 mt-3">
-                                    <a href="javascript:void(0)" class="fs-3 text-bodycolor d-flex align-items-center text-decoration-none">
-                                        <i class="ti ti-clipboard fs-6 text-primary me-2 d-flex"></i> 2 Tasks
-                                    </a>
-                                    <a href="javascript:void(0)" class="fs-3 text-bodycolor d-flex align-items-center text-decoration-none">
-                                        <i class="ti ti-message-dots fs-6 text-primary me-2 d-flex"></i> 13 Commets
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="py-3 border-bottom">
-                                <div class="d-flex align-items-center">
-                                    <span class="bg-danger-subtle text-danger badge">Inpending</span>
-                                    <span class="fs-3 ms-auto">8 Jan 2024</span>
-                                </div>
-                                <h6 class="mt-3">Dashboard Finanace Management</h6>
-                                <span class="fs-3 lh-sm">Designing an NFT-themed website with a creative concept so th...</span>
-                                <div class="hstack gap-3 mt-3">
-                                    <a href="javascript:void(0)" class="fs-3 text-bodycolor d-flex align-items-center text-decoration-none">
-                                        <i class="ti ti-clipboard fs-6 text-primary me-2 d-flex"></i> 4 Tasks
-                                    </a>
-                                    <a href="javascript:void(0)" class="fs-3 text-bodycolor d-flex align-items-center text-decoration-none">
-                                        <i class="ti ti-message-dots fs-6 text-primary me-2 d-flex"></i> 50 Commets
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="pt-3">
-                                <div class="d-flex align-items-center">
-                                    <span class="bg-success-subtle text-success badge">Completed</span>
-                                    <span class="fs-3 ms-auto">8 Feb 2024</span>
-                                </div>
-                                <h6 class="mt-3">Logo Branding</h6>
-                                <span class="fs-3 lh-sm">Designing an NFT-themed website with a creative concept so th...</span>
-                                <div class="hstack gap-3 mt-3">
-                                    <a href="javascript:void(0)" class="fs-3 text-bodycolor d-flex align-items-center text-decoration-none">
-                                        <i class="ti ti-clipboard fs-6 text-primary me-2 d-flex"></i> 1 Task
-                                    </a>
-                                    <a href="javascript:void(0)" class="fs-3 text-bodycolor d-flex align-items-center text-decoration-none">
-                                        <i class="ti ti-message-dots fs-6 text-primary me-2 d-flex"></i> 12 Commets
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
             </div>
             <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h4 class="card-title fw-semibold">Estado actual de la nota</h4>
-                                <p class="card-subtitle text-muted mb-0">Último estado asignado y responsable de la gestión</p>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" value="{{ $note->status->title }}" disabled>
-                            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title fw-semibold">Estado actual de la nota</h4>
+                            <p class="card-subtitle text-muted mb-0">Último estado asignado y responsable de la gestión</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="{{ $note->status->title }}" disabled>
                         </div>
                     </div>
+                </div>
 
-                    <div class="card w-100">
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h4 class="card-title fw-semibold">Historial de estados</h4>
-                                <p class="card-subtitle text-muted">Consulta los cambios de estado y quién los gestionó</p>
-                            </div>
-                            <div class="mb-4">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title fw-semibold">Historial de estados</h4>
+                            <p class="card-subtitle text-muted">Consulta los cambios de estado y quién los gestionó</p>
+                        </div>
+                        <div class="mb-4">
                             <ul class="timeline-widget">
                                 @foreach($histories as $historie)
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
                                         <div class="timeline-time text-dark flex-shrink-0 text-end">
-                                            {{ date('Y-m-d', strtotime($historie->note)) }}
+                                            {{ $historie->created_at_formatted }}
                                         </div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
@@ -234,14 +156,14 @@
                                         </div>
                                         <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">
                                             {{ $historie->status->title }}
-                                            <a class="text-primary d-block fw-normal">{{ $historie->employee->full_name }}</a>
+                                            <p class="d-block fw-normal">{{ $historie->employee->full_name }}</p>
                                         </div>
                                     </li>
                                 @endforeach
                             </ul>
-                            </div>
                         </div>
                     </div>
+                </div>
 
 
 

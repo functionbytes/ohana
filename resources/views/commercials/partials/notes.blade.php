@@ -27,12 +27,13 @@
 
     <script type="text/javascript">
         jQuery.validator.addMethod(
-            'cellphone',
-            function (value, element) {
-                return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
-            },
-            'Por favor, ingrese un número de teléfono móvil válido de España'
-        );
+    'cellphone',
+    function (value, element) {
+        return this.optional(element) || /^(6|7|9)[0-9]{8}$/.test(value);
+    },
+    'Por favor, ingrese un número de teléfono válido de España'
+);
+
 
         $(document).ready(function () {
             $('#noteForm').validate({

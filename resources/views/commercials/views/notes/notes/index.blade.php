@@ -31,43 +31,51 @@
                     <div class="card p-4">
                         <div class="card-body p-0">
 
-                            <span class="bg-light-note text-primary badge mb-3 fw-semibold">{{$note->status->title}}</span>
-                            <div class="d-flex align-items-center mb-3">
-                                <h4 class="fw-semibold mb-0 text-black">
-                                    <a class="text-black">
-                                        {{ $note->title }}
-                                    </a>
-                                </h4>
-                            </div>
-
                             <div class="p-4 container-customer">
+
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <h6 class="mb-0 fs-5 fw-semibold">{{ $note->customer->full_name }}</h6>
-                                        <span>lian@email</span>
+                                        <span>{{ $note->customer->cellphone }}</span>
                                     </div>
-                                    <img src="../assets/images/profile/user-3.jpg" alt="user1" width="35" class="rounded-circle">
-                                </div>
-                                <div class="d-flex align-items-start justify-content-between mt-3">
-                                    <span>Price</span>
-                                    <div class="text-end">
-                                        <h5 class="mb-0 fs-5 fw-semibold">
-                                            {{ $note->number }}
-                                        </h5>
-                                        <span class="fs-3">NOTA</span>
+                                    <div>
+                                        <span class="bg-light-note text-primary badge  fw-semibold h1">{{ $note->number }}</span>
                                     </div>
                                 </div>
+
+                                <hr>
+
                                 <div class="d-flex align-items-start justify-content-between mt-3">
-                            <span>
-                              <i class="ti ti-clock-hour-4 me-1 fs-4"></i>3d 1h
-                            </span>
-                                    <span>
-                              <i class="ti ti-eye fs-4 me-1"></i>1.2k
-                            </span>
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                        <tr>
+                                            <td>Estado</td>
+                                            <td class="fw-medium">{{$note->status->title}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity</td>
+                                            <td class="fw-medium">83%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pressure</td>
+                                            <td class="fw-medium">28.56 in</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover</td>
+                                            <td class="fw-medium">78%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ceiling</td>
+                                            <td class="fw-medium">25760 ft</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
                                 </div>
+
                             </div>
 
-                            <a class="btn btn-light-primary text-primary w-100 mt-3"  href="{{ route('commercial.notes.arrange', $note->uid) }}" > Detalle </a>
+                            <a class="btn btn-light-primary text-primary w-100 mt-3"  href="{{ route('commercial.notes.view', $note->uid) }}" > Detalle </a>
                             <a class="btn btn-light-primary text-primary w-100 mt-3"  href="{{ route('commercial.statements.status', $note->uid) }}" > Gestionar </a>
                         </div>
 

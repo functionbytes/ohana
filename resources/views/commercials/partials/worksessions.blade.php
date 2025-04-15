@@ -39,7 +39,7 @@
             updateClock();
 
 
-            $.get("{{ route('teleoperator.worksessions.status') }}", function (response) {
+            $.get("{{ route('commercial.worksessions.status') }}", function (response) {
                 status = response.status;
 
                 const $btn = $('#worksession');
@@ -59,8 +59,8 @@
             $('#worksession').on('click', function () {
                 const $btn = $(this);
                 const route = (status === 'in_progress')
-                    ? "{{ route('teleoperator.worksessions.checkout') }}"
-                    : "{{ route('teleoperator.worksessions.checkin') }}";
+                    ? "{{ route('commercial.worksessions.checkout') }}"
+                    : "{{ route('commercial.worksessions.checkin') }}";
 
                 $.post(route, {_token: '{{ csrf_token() }}'}, function (response) {
                     $('#status').text(response.message);

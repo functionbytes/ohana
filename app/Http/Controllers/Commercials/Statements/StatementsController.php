@@ -96,8 +96,6 @@ class StatementsController extends Controller
 
     }
 
-
-
     public function status(Request $request,$uid){
 
         $note = Note::uid($uid);
@@ -162,6 +160,7 @@ class StatementsController extends Controller
         ]);
 
     }
+
     public function store(Request $request)
     {
 
@@ -286,8 +285,8 @@ class StatementsController extends Controller
         return redirect()->route('manager.products');
     }
 
-    public function validateByPhone(Request $request)
-    {
+    public function validateByPhone(Request $request){
+
         $cellphone = $request->get('cellphone');
 
         $customer = Customer::where('cellphone', $cellphone)->first();

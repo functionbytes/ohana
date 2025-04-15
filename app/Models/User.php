@@ -80,31 +80,25 @@ class User extends Authenticatable
         return $query->where('users.available', 1);
     }
 
+    // User.php
+    public function redirectRouteName()
+    {
+        return match (true) {
+            $this->hasRole('manager') => 'manager.dashboard',
+            $this->hasRole('teleoperator') => 'teleoperator.dashboard',
+            $this->hasRole('commercial') => 'commercial.dashboard',
+            $this->hasRole('chiefteleoperator') => 'chiefteleoperator.dashboard',
+            default => 'login',
+        };
+    }
+
+
     public function redirect()
     {
-        $user = auth()->user();
-        if (!$user) {
-            return redirect()->route('login');
-        }
-
-        if ($user->hasRole('manager')) {
-            return redirect()->route('manager.dashboard');
-        }
-
-        if ($user->hasRole('teleoperator')) {
-            return redirect()->route('teleoperator.dashboard');
-        }
-
-        if ($user->hasRole('commercial')) {
-            return redirect()->route('commercial.dashboard');
-        }
-
-        if ($user->hasRole('chiefteleoperator')) {
-            return redirect()->route('chiefteleoperator.dashboard');
-        }
-
-        return redirect()->route('login');
+        return redirect()->route($this->redirectRouteName());
     }
+
+
 
     public function sessions(): HasMany
     {
@@ -138,7 +132,11 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = bcrypt($password);
+        if (strlen($password) !== 60 || !preg_match('/^\$2y\$/', $password)) {
+            $this->attributes['password'] = bcrypt($password);
+        } else {
+            $this->attributes['password'] = $password;
+        }
     }
 
     public function getFullNameAttribute()

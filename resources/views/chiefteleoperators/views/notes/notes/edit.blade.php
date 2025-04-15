@@ -257,7 +257,7 @@
                 function (value, element) {
                     return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
                 },
-                'Por favor, ingrese un número de teléfono móvil válido de España'
+                'Por favor, ingrese un número de teléfono'
             );
 
             jQuery.validator.addMethod(
@@ -384,11 +384,11 @@
                     },
                     cellphone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     phone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     address: {
                         required: "El parametro es necesario.",

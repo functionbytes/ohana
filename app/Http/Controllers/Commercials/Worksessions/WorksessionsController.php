@@ -11,8 +11,8 @@ class WorksessionsController extends Controller
 
     public function index(Request $request){
 
-        $teleoperator = app('teleoperator');
-        $worksessions = $teleoperator->worksessions();
+        $commercial = app('commercial');
+        $worksessions = $commercial->worksessions();
 
         $worksessions = $worksessions->paginate(100);
 
@@ -25,17 +25,17 @@ class WorksessionsController extends Controller
 
     public function checkin(Request $request)
     {
-        $teleoperator = app('teleoperator');
+        $commercial = app('commercial');
         $today = now()->toDateString();
 
-        $already = Worksession::todayForEmployee($teleoperator->id)->first();
+        $already = Worksession::todayForEmployee($commercial->id)->first();
 
         if ($already && $already->check_in) {
             return response()->json(['success' => false, 'message' => 'Ya fichaste la entrada hoy']);
         }
 
         $worksession = $already ?? new Worksession();
-        $worksession->employee_id = $teleoperator->id;
+        $worksession->employee_id = $commercial->id;
         $worksession->work_date = $today; // ojo aquí: era `workdate`
         $worksession->check_in = now();
         $worksession->save();
@@ -45,10 +45,10 @@ class WorksessionsController extends Controller
 
     public function checkout(Request $request)
     {
-        $teleoperator = app('teleoperator');
+        $commercial = app('commercial');
         $today = now()->toDateString();
 
-        $worksession = Worksession::todayForEmployee($teleoperator->id)->first(); // 👈 importante
+        $worksession = Worksession::todayForEmployee($commercial->id)->first(); // 👈 importante
 
         if (!$worksession) {
             return response()->json(['success' => false, 'message' => 'Primero debes fichar la entrada']);
@@ -67,9 +67,9 @@ class WorksessionsController extends Controller
 
     public function currentStatus()
     {
-        $teleoperator = app('teleoperator');
+        $commercial = app('commercial');
 
-        $session = Worksession::todayForEmployee($teleoperator->id)->first();
+        $session = Worksession::todayForEmployee($commercial->id)->first();
 
         if (!$session) {
             return response()->json(['status' => 'no_session']);

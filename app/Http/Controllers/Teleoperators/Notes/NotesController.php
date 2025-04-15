@@ -71,11 +71,13 @@ class NotesController extends Controller
         $note = Note::uid($uid);
         $customer = $note->customer;
         $histories = $note->histories;
+        $last = NoteHistorie::lastByNote($note->id)->first();
 
         return view('teleoperators.views.notes.notes.view')->with([
             'note' => $note,
             'customer' => $customer,
             'histories' => $histories,
+            'last' => $last,
         ]);
 
     }
@@ -264,9 +266,11 @@ class NotesController extends Controller
         $customer = $note->customer;
         $status = NoteStatuses::get()->prepend('', '')->pluck('title', 'id');
         $schedules = NoteSchedule::get()->prepend('', '')->pluck('title', 'id');
+        $last = NoteHistorie::lastByNote($note->id)->first();
 
         return view('teleoperators.views.notes.notes.reschedule')->with([
             'status' => $status,
+            'last' => $last,
             'schedules' => $schedules,
             'note' => $note,
             'customer' => $customer,

@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">
                                         {{ $historie->status->title }}
-                                        <a class="text-primary d-block fw-normal">{{ $historie->employee->full_name }}</a>
+                                        <a class="d-block fw-normal">{{ $historie->employee->full_name }}</a>
                                     </div>
                                 </li>
                             @endforeach

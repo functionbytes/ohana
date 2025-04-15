@@ -67,7 +67,7 @@
                             </td>
                             <td>
                                 <span class="badge {{ $customer->null == 1 ? 'bg-light-primary' : 'bg-light-secondary' }} rounded-6 py-2 text-primary fw-semibold fs-2 d-inline-flex align-items-center gap-1">
-                                           {{ $customer->null == 1 ? 'Activo' : 'No comunicarse' }}
+                                           {{ $customer->null == 1 ? 'No comunicarse' : 'Activo' }}
                                 </span>
                             </td>
 

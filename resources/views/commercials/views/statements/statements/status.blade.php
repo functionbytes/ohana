@@ -5,7 +5,7 @@
         <div class="row justify-content-center navegation-content">
             <div class="col-lg-12 text-center">
                 <span class="fw-bolder text-uppercase fs-2 d-block mb-1">SEGUIMIENTO GPS</span>
-                <h3 class="fw-bolder mb-0 fs-8 lh-base">Opciones de acción GPS para la nota</h3>
+                <h3 class="fw-bolder mb-0 fs-8 lh-base uppercase">Opciones de acción GPS para la nota</h3>
             </div>
         </div>
 
@@ -64,11 +64,7 @@
                     </div>
                 </a>
             @endforeach
-
-
         </div>
-
-
 
     </div>
 @endsection
@@ -123,6 +119,8 @@
                     success: function (response) {
                         if (slug === 'dentro') {
                             window.location.href = "{{ route('commercial.statements.arrange', $statement->uid) }}";
+                        }else if (slug === 'gps') {
+                            location.reload();
                         }else{
                             toastr.success(response.message, "Operación exitosa", {
                                 closeButton: true,

@@ -23,14 +23,15 @@ class LoginController extends Controller
 
     protected $redirectTo = '/login';
 
-    public function showLoginForm(){
-
-        if($this->guard()->check()){
+    public function showLoginForm()
+    {
+        if ($this->guard()->check()) {
             return $this->guard()->user()->redirect();
-        }else{
-            return view('auth.login');
         }
+
+        return view('auth.login');
     }
+
 
     public function login(Request $request)
     {
@@ -63,26 +64,25 @@ class LoginController extends Controller
 
     protected function sendLoginResponse(Request $request)
     {
+        $user = $this->guard()->user();
 
-        if ($this->guard()->user()) {
-
+        if ($user) {
             return response()->json([
                 'success' => true,
                 'message' => 'Inicio de sesión exitoso.',
-                'redirect' => route($this->guard()->user()->redirect())
-            ]);
-
-        } else {
-
-            $this->guard()->logout();
-            $request->session()->invalidate();
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Tu cuenta está deshabilitada. Contacta al administrador.'
+                'redirect' => route($user->redirectRouteName())
             ]);
         }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Tu cuenta está deshabilitada. Contacta al administrador.'
+        ]);
     }
+
 
     protected function sendFailedLoginResponse(Request $request)
     {

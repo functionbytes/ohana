@@ -81,7 +81,7 @@
                             <hr class="mb-4 mt-3">
 
                             <div class="d-flex flex-column mb-3">
-                                <h5 class="mb-0 text-uppercase fw-semibold">Gestión Comercial</h5>
+                                <h5 class="mb-0 text-uppercase fw-semibold">Gestión cita</h5>
                                 <p class="card-subtitle text-muted mt-2">
                                     En esta sección encontrarás toda la información relacionada con la actividad comercial, incluyendo el estado de contacto con el cliente, reprogramaciones de llamadas, seguimiento y otras acciones realizadas por el equipo comercial.
                                 </p>
@@ -257,7 +257,7 @@
                 function (value, element) {
                     return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
                 },
-                'Por favor, ingrese un número de teléfono móvil válido de España'
+                'Por favor, ingrese un número de teléfono'
             );
 
             jQuery.validator.addMethod(
@@ -384,11 +384,11 @@
                     },
                     cellphone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     phone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     address: {
                         required: "El parametro es necesario.",

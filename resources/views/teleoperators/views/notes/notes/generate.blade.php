@@ -224,18 +224,16 @@
                 toggleVisitFields();
             });
 
-            $(".picker").datepicker({
-    onSelect: function(dateText, inst) {
-        $(this).datepicker("hide");
-    }
-});
+            $('.picker').datepicker({
+                autoclose: true
+            });
 
             jQuery.validator.addMethod(
                 'cellphone',
                 function (value, element) {
                     return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
                 },
-                'Por favor, ingrese un número de teléfono móvil válido de España'
+                'Por favor, ingrese un número de teléfono'
             );
 
             jQuery.validator.addMethod(
@@ -277,8 +275,10 @@
                             const status = $('#status').val();
                             return status === '1';
                         },
+                        email: true,
                         emailExt: true,
                     },
+
                     cellphone: {
                         required: true,
                         cellphone: true,
@@ -360,13 +360,17 @@
                         minlength: "Debe contener al menos 1 caracter",
                         maxlength: "Debe contener al menos 9  caracter",
                     },
+                    email: {
+                        required: "El parametro es necesario.",
+                        email: 'Por favor, introduce una dirección de correo electrónico válida.',
+                    },
                     cellphone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        cellphone: 'Por favor, ingrese un número de teléfono.',
                     },
                     phone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     address: {
                         required: "El parametro es necesario.",
@@ -400,13 +404,13 @@
                     visit: {
                         required: "El parametro es necesario.",
                     },
-                        nextcall: {
+                    nextcall: {
                             required: "La fecha de la próxima llamada es obligatoria si el estado es 'Reprogramar'."
-                        },
-                        notes: {
+                    },
+                    notes: {
                             required: "El campo de observaciones es obligatorio.",
                             minlength: "Las observaciones deben tener al menos 5 caracteres."
-                        },
+                    },
 
                 },
                 submitHandler: function(form) {

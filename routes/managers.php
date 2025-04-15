@@ -17,7 +17,7 @@ use App\Http\Controllers\Managers\PulseController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'manager', 'middleware' => ['auth', 'roles:managers']], function () {
+Route::group(['prefix' => 'manager', 'middleware' => ['auth', 'roles:manager']], function () {
 
     Route::get('/', [DashboardController::class, 'dashboard'])->name('manager.dashboard');
 

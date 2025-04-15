@@ -32117,19 +32117,19 @@ label.error {
     color: #008bcd !important;
 }
 
-.lesion-content-wrapper h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     font-weight: 600 !important;
 }
 
-.lesion-content-wrapper p {
+p {
     color: #000;
 }
 
-.lesion-content-wrapper p br:empty {
+p br:empty {
     display: none;
 }
 
-.lesion-content-wrapper p:empty {
+p:empty {
     display: none;
 }
 
@@ -33313,4 +33313,19 @@ input:-webkit-autofill:active {
 .container-installment strong{
     color: #527c59 !important;
     font-size: 17px;
+}
+
+.note-has-grid{
+
+}
+
+
+.note-has-grid .bg-light-note {
+    color: #ffffff !important;
+    background: #000000;
+    box-shadow: var(--bs-card-box-shadow);
+    text-transform: uppercase;
+    font-size: 25px;
+    padding: 5px 10px;
+    margin: 0;
 }

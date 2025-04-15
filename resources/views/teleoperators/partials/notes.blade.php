@@ -29,10 +29,11 @@
         jQuery.validator.addMethod(
             'cellphone',
             function (value, element) {
-                return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
+                return this.optional(element) || /^(6|7|9)[0-9]{8}$/.test(value);
             },
-            'Por favor, ingrese un número de teléfono móvil válido de España'
+            'Por favor, ingrese un número de teléfono válido de España'
         );
+
 
         $(document).ready(function () {
             $('#noteForm').validate({
@@ -69,7 +70,7 @@
                             }
 
                             if (response.exists && response.success === true) {
-                                window.location.href = '{{ route("teleoperator.notes.view", ":uid") }}'.replace(':uid', response.uid);
+                                window.location.href = '{{ route("teleoperator.customers.view", ":uid") }}'.replace(':uid', response.uid);
                                 return;
                             }
 

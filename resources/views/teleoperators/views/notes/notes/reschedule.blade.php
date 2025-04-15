@@ -3,7 +3,39 @@
 @section('content')
 
     <div class="row">
+
+
+        @if($note->status->id == 2)
+            <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h4 class="card-title">Información de reprogramar llamada </h4>
+                        <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <i class="ti ti-menu fs-5 d-flex"></i>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label class="control-label col-form-label">Fecha de llamada</label>
+                            <input type="text" class="form-control" name="firstname" value="{{ $last->next_call_at }}" placeholder="Ingresar nombres" disabled>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label class="control-label col-form-label">Comentario de llamada</label>
+                            <input type="text" class="form-control" name="lastname" value="{{ $last->notes }}" placeholder="Ingresar apellidos" disabled>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <div class="col-lg-12 d-flex align-items-stretch">
+
+
 
             <div class="card w-100">
 
@@ -224,10 +256,8 @@
                 toggleVisitFields();
             });
 
-            $(".picker").datepicker({
-                onSelect: function(dateText, inst) {
-                    $(this).datepicker("hide");
-                }
+            $('.picker').datepicker({
+                autoclose: true
             });
 
             jQuery.validator.addMethod(
@@ -235,7 +265,7 @@
                 function (value, element) {
                     return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
                 },
-                'Por favor, ingrese un número de teléfono móvil válido de España'
+                'Por favor, ingrese un número de teléfono'
             );
 
             jQuery.validator.addMethod(
@@ -273,10 +303,11 @@
                         maxlength: 9,
                     },
                     email: {
-                         required: function (element) {
+                        required: function (element) {
                             const status = $('#status').val();
                             return status === '1';
                         },
+                        email: true,
                         emailExt: true,
                     },
                     cellphone: {
@@ -362,11 +393,15 @@
                     },
                     cellphone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
+                    },
+                    email: {
+                        required: "El parametro es necesario.",
+                        email: 'Por favor, introduce una dirección de correo electrónico válida.',
                     },
                     phone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     address: {
                         required: "El parametro es necesario.",

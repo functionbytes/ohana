@@ -34,12 +34,6 @@
                                 <label  class="control-label col-form-label">Apellidos</label>
                                 <input type="text" class="form-control" name="lastname"  placeholder="Ingresar apellidos"  value="{{$customer->lastname}}" autocomplete="new-password">
                             </div>
-
-                            <div class="col-6 mb-3">
-                                <label  class="control-label col-form-label">Identificacion</label>
-                                <input type="text" class="form-control" name="identification"  placeholder="Ingresar la identificacion"   value="{{$customer->identification}}" autocomplete="new-password">
-                            </div>
-
                             <div class="col-6 mb-3">
                                 <label  class="control-label col-form-label">Telefono</label>
                                 <input type="text" class="form-control"  name="cellphone"  placeholder="Ingresar el celular"  value="{{$customer->cellphone}}" autocomplete="new-password">
@@ -49,12 +43,6 @@
                                 <label  class="control-label col-form-label">Telefono (opcional)</label>
                                 <input type="text" class="form-control"  name="phone"  placeholder="Ingresar el celular"  value="{{$customer->phone}}" autocomplete="new-password">
                             </div>
-
-                            <div class="col-6 mb-3">
-                                <label  class="control-label col-form-label">Iban</label>
-                                <input type="text" class="form-control"  name="iban"  placeholder="Ingresar el iban"  value="{{$customer->iban}}" autocomplete="new-password">
-                            </div>
-
                             <div class="col-12 mb-3">
                                 <label  class="control-label col-form-label">Correo electronico</label>
                                 <input type="text" class="form-control" name="email"  placeholder="Ingresar el correo electronico" value="{{$customer->email}}"  autocomplete="new-password">
@@ -172,7 +160,7 @@
                 function (value, element) {
                     return this.optional(element) || /^(6|7)[0-9]{8}$/.test(value);
                 },
-                'Por favor, ingrese un número de teléfono móvil válido de España'
+                'Por favor, ingrese un número de teléfono'
             );
 
             jQuery.validator.addMethod(
@@ -206,11 +194,6 @@
                         required: true,
                         minlength: 3,
                         maxlength: 100,
-                    },
-                    identification: {
-                        required: false,
-                        minlength: 1,
-                        maxlength: 9,
                     },
                     email: {
                         required: false,
@@ -271,11 +254,11 @@
                     },
                     cellphone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     phone: {
                         required: "El parametro es necesario.",
-                        email: 'Por favor, ingrese un número de teléfono móvil válido de España.',
+                        email: 'Por favor, ingrese un número de teléfono.',
                     },
                     address: {
                         required: "El parametro es necesario.",
