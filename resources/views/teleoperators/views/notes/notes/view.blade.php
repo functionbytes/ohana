@@ -10,7 +10,7 @@
             <div class="col-lg-8 ">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-7">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="card-title">Información cliente</h4>
                             <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                 <i class="ti ti-menu fs-5 d-flex"></i>
@@ -101,7 +101,7 @@
                 @if($note->status->id == 2)
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-7">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="card-title">Información de reprogramar llamada </h4>
                                 <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                     <i class="ti ti-menu fs-5 d-flex"></i>
@@ -127,7 +127,7 @@
 
                 <div class="card">
                     <div class="card-body component--annotations">
-                        <h4 class="card-title fw-semibold">Historial de nota</h4>
+                        <h4 class="card-title fw-semibold">t</h4>
                         <p class="card-subtitle">Registro de los movimientos que realizados por el teleoperador</p>
 
                         <div class="list-annotations">
