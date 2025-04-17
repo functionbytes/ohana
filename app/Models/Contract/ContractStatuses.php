@@ -38,7 +38,7 @@ class ContractStatuses extends Model
 
     public function contracts() : HasMany
     {
-        return $this->hasMany('App\Models\Contract\Contract', 'status_id');
+        return $this->hasMany('App\Models\Contract\Commission', 'status_id');
     }
 
 }

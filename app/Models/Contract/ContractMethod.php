@@ -37,7 +37,7 @@ class ContractMethod extends Model
     }
     public function contracts() : HasMany
     {
-        return $this->hasMany('App\Models\Contract\Contract', 'method_id');
+        return $this->hasMany('App\Models\Contract\Commission', 'method_id');
     }
 
 }

@@ -26,6 +26,16 @@ class StatementModalitie extends Model
         return $query->where('id', $id)->first();
     }
 
+    public function scopeDescending($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopeAscending($query)
+    {
+        return $query->orderBy('created_at', 'asc');
+    }
+
     public function scopeUid($query, $uid)
     {
         return $query->where('uid', $uid)->first();

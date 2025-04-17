@@ -38,7 +38,7 @@ class ContractFinancing extends Model
 
     public function contracts() : HasMany
     {
-        return $this->hasMany('App\Models\Contract\Contract', 'financing_id');
+        return $this->hasMany('App\Models\Contract\Commission', 'financing_id');
     }
 
 }

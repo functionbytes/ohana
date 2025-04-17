@@ -59,7 +59,7 @@ class Customer extends Model
 
     public function contracts(): HasMany
     {
-        return $this->hasMany('App\Models\Contract\Contract', 'customer_id');
+        return $this->hasMany('App\Models\Contract\Commission', 'customer_id');
     }
 
 

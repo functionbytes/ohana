@@ -15,6 +15,21 @@ use App\Http\Controllers\Managers\Settings\SettingsController;
 use App\Http\Controllers\Managers\Users\UsersController;
 use App\Http\Controllers\Managers\PulseController;
 
+
+use App\Http\Controllers\Managers\Settings\Statements\AccessoriesController as StatementsAccessoriesController;
+use App\Http\Controllers\Managers\Settings\Statements\CreamsController as StatementsCreamsController;
+use App\Http\Controllers\Managers\Settings\Statements\EmploymentsController as StatementsEmploymentsController;
+use App\Http\Controllers\Managers\Settings\Statements\HousingsController as StatementsHousingsController;
+use App\Http\Controllers\Managers\Settings\Statements\IncidentSchedulesController as StatementsIncidentSchedulesController;
+use App\Http\Controllers\Managers\Settings\Statements\IncidentSoldsController as StatementsIncidentSoldsController;
+use App\Http\Controllers\Managers\Settings\Statements\MaritalsController as StatementsMaritalsController;
+use App\Http\Controllers\Managers\Settings\Statements\MethodsController as StatementsMethodsController;
+use App\Http\Controllers\Managers\Settings\Statements\ModalitiesController as StatementsModalitiesController;
+use App\Http\Controllers\Managers\Settings\Statements\PaymentsController as StatementsPaymentsController;
+use App\Http\Controllers\Managers\Settings\Statements\RelationshipsController as StatementsRelationshipsController;
+
+
+
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'manager', 'middleware' => ['auth', 'roles:manager']], function () {
@@ -188,6 +203,106 @@ Route::group(['prefix' => 'manager', 'middleware' => ['auth', 'roles:manager']],
 
         Route::get('/hours', [HoursSettingsController::class, 'index'])->name('manager.settings.hours');
         Route::post('/hours/update', [HoursSettingsController::class, 'update'])->name('manager.settings.hours.update');
+
+
+        Route::prefix('statement/accessories')->group(function () {
+            Route::get('/', [StatementsAccessoriesController::class, 'index'])->name('manager.settings.statements.accessories');
+            Route::get('/create', [StatementsAccessoriesController::class, 'create'])->name('manager.settings.statements.accessories.create');
+            Route::post('/store', [StatementsAccessoriesController::class, 'store'])->name('manager.settings.statements.accessories.store');
+            Route::post('/update', [StatementsAccessoriesController::class, 'update'])->name('manager.settings.statements.accessories.update');
+            Route::get('/edit/{uid}', [StatementsAccessoriesController::class, 'edit'])->name('manager.settings.statements.accessories.edit');
+            Route::get('/destroy/{uid}', [StatementsAccessoriesController::class, 'destroy'])->name('manager.settings.statements.accessories.destroy');
+        });
+
+        Route::prefix('statement/creams')->group(function () {
+            Route::get('/', [StatementsCreamsController::class, 'index'])->name('manager.settings.statements.creams');
+            Route::get('/create', [StatementsCreamsController::class, 'create'])->name('manager.settings.statements.creams.create');
+            Route::post('/store', [StatementsCreamsController::class, 'store'])->name('manager.settings.statements.creams.store');
+            Route::post('/update', [StatementsCreamsController::class, 'update'])->name('manager.settings.statements.creams.update');
+            Route::get('/edit/{uid}', [StatementsCreamsController::class, 'edit'])->name('manager.settings.statements.creams.edit');
+            Route::get('/destroy/{uid}', [StatementsCreamsController::class, 'destroy'])->name('manager.settings.statements.creams.destroy');
+        });
+
+        Route::prefix('statement/employments')->group(function () {
+            Route::get('/', [StatementsEmploymentsController::class, 'index'])->name('manager.settings.statements.employments');
+            Route::get('/create', [StatementsEmploymentsController::class, 'create'])->name('manager.settings.statements.employments.create');
+            Route::post('/store', [StatementsEmploymentsController::class, 'store'])->name('manager.settings.statements.employments.store');
+            Route::post('/update', [StatementsEmploymentsController::class, 'update'])->name('manager.settings.statements.employments.update');
+            Route::get('/edit/{uid}', [StatementsEmploymentsController::class, 'edit'])->name('manager.settings.statements.employments.edit');
+            Route::get('/destroy/{uid}', [StatementsEmploymentsController::class, 'destroy'])->name('manager.settings.statements.employments.destroy');
+        });
+
+        Route::prefix('statement/housings')->group(function () {
+            Route::get('/', [StatementsHousingsController::class, 'index'])->name('manager.settings.statements.housings');
+            Route::get('/create', [StatementsHousingsController::class, 'create'])->name('manager.settings.statements.housings.create');
+            Route::post('/store', [StatementsHousingsController::class, 'store'])->name('manager.settings.statements.housings.store');
+            Route::post('/update', [StatementsHousingsController::class, 'update'])->name('manager.settings.statements.housings.update');
+            Route::get('/edit/{uid}', [StatementsHousingsController::class, 'edit'])->name('manager.settings.statements.housings.edit');
+            Route::get('/destroy/{uid}', [StatementsHousingsController::class, 'destroy'])->name('manager.settings.statements.housings.destroy');
+        });
+
+        Route::prefix('statement/incident_schedules')->group(function () {
+            Route::get('/', [StatementsIncidentSchedulesController::class, 'index'])->name('manager.settings.statements.incident_schedules');
+            Route::get('/create', [StatementsIncidentSchedulesController::class, 'create'])->name('manager.settings.statements.incident_schedules.create');
+            Route::post('/store', [StatementsIncidentSchedulesController::class, 'store'])->name('manager.settings.statements.incident_schedules.store');
+            Route::post('/update', [StatementsIncidentSchedulesController::class, 'update'])->name('manager.settings.statements.incident_schedules.update');
+            Route::get('/edit/{uid}', [StatementsIncidentSchedulesController::class, 'edit'])->name('manager.settings.statements.incident_schedules.edit');
+            Route::get('/destroy/{uid}', [StatementsIncidentSchedulesController::class, 'destroy'])->name('manager.settings.statements.incident_schedules.destroy');
+        });
+
+        Route::prefix('statement/incident_solds')->group(function () {
+            Route::get('/', [StatementsIncidentSoldsController::class, 'index'])->name('manager.settings.statements.incident_solds');
+            Route::get('/create', [StatementsIncidentSoldsController::class, 'create'])->name('manager.settings.statements.incident_solds.create');
+            Route::post('/store', [StatementsIncidentSoldsController::class, 'store'])->name('manager.settings.statements.incident_solds.store');
+            Route::post('/update', [StatementsIncidentSoldsController::class, 'update'])->name('manager.settings.statements.incident_solds.update');
+            Route::get('/edit/{uid}', [StatementsIncidentSoldsController::class, 'edit'])->name('manager.settings.statements.incident_solds.edit');
+            Route::get('/destroy/{uid}', [StatementsIncidentSoldsController::class, 'destroy'])->name('manager.settings.statements.incident_solds.destroy');
+        });
+
+        Route::prefix('statement/maritals')->group(function () {
+            Route::get('/', [StatementsMaritalsController::class, 'index'])->name('manager.settings.statements.maritals');
+            Route::get('/create', [StatementsMaritalsController::class, 'create'])->name('manager.settings.statements.maritals.create');
+            Route::post('/store', [StatementsMaritalsController::class, 'store'])->name('manager.settings.statements.maritals.store');
+            Route::post('/update', [StatementsMaritalsController::class, 'update'])->name('manager.settings.statements.maritals.update');
+            Route::get('/edit/{uid}', [StatementsMaritalsController::class, 'edit'])->name('manager.settings.statements.maritals.edit');
+            Route::get('/destroy/{uid}', [StatementsMaritalsController::class, 'destroy'])->name('manager.settings.statements.maritals.destroy');
+        });
+
+        Route::prefix('statement/methods')->group(function () {
+            Route::get('/', [StatementsMethodsController::class, 'index'])->name('manager.settings.statements.methods');
+            Route::get('/create', [StatementsMethodsController::class, 'create'])->name('manager.settings.statements.methods.create');
+            Route::post('/store', [StatementsMethodsController::class, 'store'])->name('manager.settings.statements.methods.store');
+            Route::post('/update', [StatementsMethodsController::class, 'update'])->name('manager.settings.statements.methods.update');
+            Route::get('/edit/{uid}', [StatementsMethodsController::class, 'edit'])->name('manager.settings.statements.methods.edit');
+            Route::get('/destroy/{uid}', [StatementsMethodsController::class, 'destroy'])->name('manager.settings.statements.methods.destroy');
+        });
+
+        Route::prefix('statement/modalities')->group(function () {
+            Route::get('/', [StatementsModalitiesController::class, 'index'])->name('manager.settings.statements.modalities');
+            Route::get('/create', [StatementsModalitiesController::class, 'create'])->name('manager.settings.statements.modalities.create');
+            Route::post('/store', [StatementsModalitiesController::class, 'store'])->name('manager.settings.statements.modalities.store');
+            Route::post('/update', [StatementsModalitiesController::class, 'update'])->name('manager.settings.statements.modalities.update');
+            Route::get('/edit/{uid}', [StatementsModalitiesController::class, 'edit'])->name('manager.settings.statements.modalities.edit');
+            Route::get('/destroy/{uid}', [StatementsModalitiesController::class, 'destroy'])->name('manager.settings.statements.modalities.destroy');
+        });
+
+        Route::prefix('statement/payments')->group(function () {
+            Route::get('/', [StatementsPaymentsController::class, 'index'])->name('manager.settings.statements.payments');
+            Route::get('/create', [StatementsPaymentsController::class, 'create'])->name('manager.settings.statements.payments.create');
+            Route::post('/store', [StatementsPaymentsController::class, 'store'])->name('manager.settings.statements.payments.store');
+            Route::post('/update', [StatementsPaymentsController::class, 'update'])->name('manager.settings.statements.payments.update');
+            Route::get('/edit/{uid}', [StatementsPaymentsController::class, 'edit'])->name('manager.settings.statements.payments.edit');
+            Route::get('/destroy/{uid}', [StatementsPaymentsController::class, 'destroy'])->name('manager.settings.statements.payments.destroy');
+        });
+
+        Route::prefix('statement/relationships')->group(function () {
+            Route::get('/', [StatementsRelationshipsController::class, 'index'])->name('manager.settings.statements.relationships');
+            Route::get('/create', [StatementsRelationshipsController::class, 'create'])->name('manager.settings.statements.relationships.create');
+            Route::post('/store', [StatementsRelationshipsController::class, 'store'])->name('manager.settings.statements.relationships.store');
+            Route::post('/update', [StatementsRelationshipsController::class, 'update'])->name('manager.settings.statements.relationships.update');
+            Route::get('/edit/{uid}', [StatementsRelationshipsController::class, 'edit'])->name('manager.settings.statements.relationships.edit');
+            Route::get('/destroy/{uid}', [StatementsRelationshipsController::class, 'destroy'])->name('manager.settings.statements.relationships.destroy');
+        });
 
     });
 

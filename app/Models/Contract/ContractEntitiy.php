@@ -38,7 +38,7 @@ class ContractEntitiy extends Model
 
     public function contracts() : HasMany
     {
-        return $this->hasMany('App\Models\Contract\Contract', 'entity_id');
+        return $this->hasMany('App\Models\Contract\Commission', 'entity_id');
     }
 
 }

@@ -162,5 +162,35 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Worksession', 'employee_id');
     }
 
+
+    public function delegation() {
+        return $this->belongsTo('App\Models\Delegation\Delegation');
+    }
+
+    public function location() {
+        return $this->belongsTo('App\Models\Location\Location');
+    }
+
+    public function role() {
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function notes() {
+        return $this->hasMany('App\Models\Note\Note');
+    }
+
+    public function statements() {
+        return $this->hasMany('App\Models\Statement\Statement');
+    }
+
+    public function contracts() {
+        return $this->hasMany('App\Models\Contract\Commission');
+    }
+
+    public function commissions()
+    {
+        return $this->morphMany('App\Models\Commission\Commission', 'commissionable');
+    }
+
 }
 
